@@ -12,9 +12,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#ifndef __linux
-#   define DL_uFC_GCC_DLL_IMPORT
-#endif
 #include "uFCoder.h"
 #include "originality_check.h"
 #include <unistd.h>
