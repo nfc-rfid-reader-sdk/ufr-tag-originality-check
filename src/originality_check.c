@@ -2,9 +2,10 @@
  ============================================================================
  Name        : originality_check.c
  Author      : d-logic
- Version     : 1.0
- Description : NXP Originality Chech Demo in C, (using gcc cross compiler)
- Compiler options: -std=c99
+ Version     : 1.1
+ Description : NXP Originality Check Demo in C, (using gcc cross compiler)
+ Dependencies: libuFCoder.dylib from v3.9.14, uFR firmware from v3.9.8
+ Windows (MinGW) compiler options: -std=c99
  ============================================================================
  */
 
