@@ -36,9 +36,61 @@ int app_loop(void) {
 			"      NXP  Originality Check Example     \n"
 			"Please wait while opening uFR NFC reader.\n"
 			"-----------------------------------------\n");
-	status = ReaderOpen();
+	int mode = 0;
+				    printf("Select reader opening mode:\n");
+				    printf(" (1) - Simple Reader Open\n");
+				    printf(" (2) - Advanced Reader Open\n");
+				    scanf("%d", &mode);
+				    fflush(stdin);
+
+				    if (mode == 1){
+				    	status = ReaderOpen();
+				    }
+				    else if (mode == 2)
+				    {
+				       uint32_t reader_type = 1;
+				       char port_name[1024] = "";
+				       uint32_t port_interface = 2;
+				       char open_args[1024] = "";
+				       const char str_interface[2] = "";
+
+				       printf("Enter reader type:\n");
+				       scanf("%d", &reader_type);
+				       fflush(stdin);
+
+				       printf("Enter port name:\n");
+				       scanf("%s", port_name);
+				       fflush(stdin);
+
+				       /*printf("Enter port interface:\n");
+				       scanf("%s", str_interface);
+				       if (str_interface[0] == 'U'){
+				           port_interface = 85;
+				       } else if (str_interface[0] == 'T'){
+				           port_interface = 84;
+				       } else{
+				           port_interface = atoi(str_interface);
+				       }*/
+
+				       fflush(stdin);
+
+				       printf("Enter additional argument:\n");
+				       scanf("%s", open_args);
+				       fflush(stdin);
+
+				       status = ReaderOpenEx(reader_type, port_name, 85, open_args);
+
+				    }
+				    else
+				    {
+				        printf("Invalid input. Press any key to quit the application...");
+				        getchar();
+						return EXIT_FAILURE;
+				    }
+
 	if (status != UFR_OK) {
 		printf("Error while opening device, status is: 0x%08X\n", status);
+		getchar();
 		return EXIT_FAILURE;
 	}
 	printf("uFR NFC reader successfully opened.\n");
